@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Plataforma
+  - Enemigo
   - 
   - 
   - 
@@ -38,6 +38,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fondo
+    uniqueID: 1278934697
+    locked: 0
+  - name: Mapa
+    uniqueID: 2986009877
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Frente
+    uniqueID: 3385742721
+    locked: 0
+  m_RenderingLayers:
+  - Default
