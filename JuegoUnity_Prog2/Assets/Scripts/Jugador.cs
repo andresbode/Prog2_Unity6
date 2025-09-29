@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    [Header("Configuracion")]
-    [SerializeField] private float vida = 5f;
-
-    public void ModificarVida(float puntos)
+    public void RecibirDano()
     {
-        vida += puntos;
-        Debug.Log(EstasVivo());
+        // Solo usamos GameManager para las vidas
+        GameManager.Instance.PerderVida();
+        Debug.Log($"Vidas restantes: {GameManager.Instance.GetVidas()}");
     }
-
 
     private bool EstasVivo()
     {
-        return vida > 0;
+        // Verificamos contra las vidas del GameManager
+        return GameManager.Instance.GetVidas() > 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag("Meta")) { return; }
 
-        Debug.Log("GANASTE");
+        GameManager.Instance.CompletarNivel();
+        Debug.Log("GANASTE - Nivel: " + GameManager.Instance.GetNivelActual());
     }
 }

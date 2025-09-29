@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Herir : MonoBehaviour
 {
-    // Variables a configurar desde el editor
     [Header("Configuracion")]
     [SerializeField] float puntos = 5f;
 
@@ -13,8 +12,8 @@ public class Herir : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Jugador jugador = collision.gameObject.GetComponent<Jugador>();
-            jugador.ModificarVida(-puntos);
-            Debug.Log(" PUNTOS DE DAÑO REALIZADOS AL JUGADOR " + puntos);
+            jugador.RecibirDano(); // Cambiá esta línea
+            Debug.Log("Daño realizado al jugador: " + puntos);
         }
     }
 }

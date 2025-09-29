@@ -4,31 +4,53 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    // Variables a configurar desde el editor
     [Header("Configuracion")]
     [SerializeField] float velocidad = 5f;
+    [SerializeField] Sprite spriteQuieto;
+    [SerializeField] Sprite spriteCaminando;
 
-    // Variables de uso interno en el script
     private float moverHorizontal;
-    private Vector2 direccion;
-
-    // Variable para referenciar otro componente del objeto
     private Rigidbody2D miRigidbody2D;
+    private SpriteRenderer miSprite;
+    private float tiempoCambio = 0f;
+    private bool mostrarSprite1 = true;
 
-    // Codigo ejecutado cuando el objeto se activa en el nivel
     private void OnEnable()
     {
         miRigidbody2D = GetComponent<Rigidbody2D>();
+        miSprite = GetComponent<SpriteRenderer>();
     }
 
-    // Codigo ejecutado en cada frame del juego (Intervalo variable)
     private void Update()
     {
         moverHorizontal = Input.GetAxis("Horizontal");
-        direccion = new Vector2(moverHorizontal, 0f);
+
+        // Rotar sprite
+        if (moverHorizontal < 0) miSprite.flipX = true;
+        else if (moverHorizontal > 0) miSprite.flipX = false;
+
+        // Animación de caminata
+        bool estaCaminando = Mathf.Abs(moverHorizontal) > 0.1f;
+
+        if (estaCaminando)
+        {
+            tiempoCambio += Time.deltaTime;
+            if (tiempoCambio > 0.2f) // Cambia cada 0.2 segundos
+            {
+                mostrarSprite1 = !mostrarSprite1;
+                miSprite.sprite = mostrarSprite1 ? spriteQuieto : spriteCaminando;
+                tiempoCambio = 0f;
+            }
+        }
+        else
+        {
+            miSprite.sprite = spriteQuieto;
+            tiempoCambio = 0f;
+        }
     }
+
     private void FixedUpdate()
     {
-        miRigidbody2D.AddForce(direccion * velocidad);
+        miRigidbody2D.linearVelocity = new Vector2(moverHorizontal * velocidad, miRigidbody2D.linearVelocity.y);
     }
 }
