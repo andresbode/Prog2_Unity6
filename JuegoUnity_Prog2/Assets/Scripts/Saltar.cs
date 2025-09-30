@@ -5,7 +5,6 @@ using UnityEngine;
 public class Saltar : MonoBehaviour
 {
     [Header("Configuracion")]
-    [SerializeField] private float fuerzaSalto = 5f;
 
     private bool puedoSaltar = true;
     private bool saltando = false;

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     [Header("Configuracion")]
-    [SerializeField] float velocidad = 5f;
     [SerializeField] Sprite spriteQuieto;
     [SerializeField] Sprite spriteCaminando;
 
