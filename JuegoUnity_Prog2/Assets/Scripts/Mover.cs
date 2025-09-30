@@ -49,8 +49,9 @@ public class Mover : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        miRigidbody2D.linearVelocity = new Vector2(moverHorizontal * velocidad, miRigidbody2D.linearVelocity.y);
-    }
+  private void FixedUpdate()
+{
+    float velocidadActual = GameManager.Instance.GetVelocidadJugador();
+    miRigidbody2D.linearVelocity = new Vector2(moverHorizontal * velocidadActual, miRigidbody2D.linearVelocity.y);
+}
 }

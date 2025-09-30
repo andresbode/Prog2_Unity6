@@ -4,8 +4,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [Header("Configuración desde Editor")]
+    [SerializeField] private PerfilJuego perfilActual;
+
     private int score;
-    private int vidas = 3;
+    private int vidas;
     private int nivelActual = 1;
 
     private void Awake()
@@ -18,6 +21,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        // Usar las vidas del perfil
+        vidas = perfilActual.vidasIniciales;
     }
 
     // Puntuación
@@ -61,5 +67,16 @@ public class GameManager : MonoBehaviour
     public int GetNivelActual()
     {
         return nivelActual;
+    }
+
+    // Para que otros scripts obtengan configuraciones
+    public float GetVelocidadJugador()
+    {
+        return perfilActual.velocidadJugador;
+    }
+
+    public float GetFuerzaSalto()
+    {
+        return perfilActual.fuerzaSalto;
     }
 }
