@@ -36,7 +36,15 @@ public class Saltar : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        puedoSaltar = true;
-        saltando = false;
+        // Solo permitir saltar si colisiona por debajo (suelo)
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            if (contact.normal.y > 0.5f) // Si la superficie está "abajo"
+            {
+                puedoSaltar = true;
+                saltando = false;
+                break;
+            }
+        }
     }
 }

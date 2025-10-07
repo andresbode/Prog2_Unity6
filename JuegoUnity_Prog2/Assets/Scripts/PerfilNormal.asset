@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ee78c7d8221994f9833c6ebe3b5cc5, type: 3}
   m_Name: PerfilNormal
   m_EditorClassIdentifier: 
+  vidasIniciales: 3
+  puntosPorMoneda: 100
+  multiplicadorPuntos: 1
+  velocidadJugador: 5
+  fuerzaSalto: 20

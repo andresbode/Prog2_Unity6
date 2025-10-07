@@ -28,7 +28,7 @@ public class Mover : MonoBehaviour
         if (moverHorizontal < 0) miSprite.flipX = true;
         else if (moverHorizontal > 0) miSprite.flipX = false;
 
-        // Animación de caminata
+        // Animaciï¿½n de caminata
         bool estaCaminando = Mathf.Abs(moverHorizontal) > 0.1f;
 
         if (estaCaminando)
@@ -48,9 +48,10 @@ public class Mover : MonoBehaviour
         }
     }
 
-  private void FixedUpdate()
-{
-    float velocidadActual = GameManager.Instance.GetVelocidadJugador();
-    miRigidbody2D.linearVelocity = new Vector2(moverHorizontal * velocidadActual, miRigidbody2D.linearVelocity.y);
-}
+    private void FixedUpdate()
+    {
+        float velocidadActual = GameManager.Instance.GetVelocidadJugador();
+        Vector2 movimiento = new Vector2(moverHorizontal * velocidadActual, miRigidbody2D.linearVelocity.y);
+        miRigidbody2D.linearVelocity = movimiento;
+    }
 }
